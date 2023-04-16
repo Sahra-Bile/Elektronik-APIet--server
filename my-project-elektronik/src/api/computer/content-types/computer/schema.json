@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "computers",
+  "info": {
+    "singularName": "computer",
+    "pluralName": "computers",
+    "displayName": "computer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "maker": {
+      "type": "string"
+    },
+    "processor": {
+      "type": "string"
+    },
+    "price": {
+      "type": "float"
+    },
+    "imageUrl": {
+      "type": "text"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "computers"
+    }
+  }
+}

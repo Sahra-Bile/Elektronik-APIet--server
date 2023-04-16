@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "televisions",
+  "info": {
+    "singularName": "television",
+    "pluralName": "televisions",
+    "displayName": "television"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "maker": {
+      "type": "string"
+    },
+    "imageUrl": {
+      "type": "text"
+    },
+    "price": {
+      "type": "float"
+    },
+    "screen_size": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "audio_devices",
+  "info": {
+    "singularName": "audio-device",
+    "pluralName": "audio-devices",
+    "displayName": "audio_device",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "maker": {
+      "type": "string"
+    },
+    "price": {
+      "type": "float"
+    },
+    "effect": {
+      "type": "integer"
+    },
+    "imageUrl": {
+      "type": "text"
+    }
+  }
+}
