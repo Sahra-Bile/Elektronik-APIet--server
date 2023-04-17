@@ -48,7 +48,8 @@ class UserValidator {
       param('id')
         .notEmpty()
         .withMessage('The value should be not empty')
-        .isUUID(4)
+        .isInt()
+
         .withMessage('The value should be uuid v4'),
     ]
   }
