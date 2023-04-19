@@ -7,9 +7,6 @@ import {
 
 const API_URL = 'http://localhost:1337/api'
 
-const api = axios.create({
-  baseURL: 'http://localhost:1337/api',
-})
 export const getAllComputers = async (): Promise<IComputer[]> => {
   const response: AxiosResponse<IComputer[]> = await axios.get(
     `${API_URL}/computers`,

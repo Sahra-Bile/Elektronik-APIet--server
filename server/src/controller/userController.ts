@@ -1,14 +1,12 @@
 import asyncHandler from 'express-async-handler'
 import * as userData from '../database/db'
 import { Request, Response } from 'express'
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
 import * as utils from '../database/utills'
 
 import { IUser } from '../models/IUser'
 import { hashPassword } from '../database/utills'
 
-export const createUser = async (req: Request, res: Response) => {
+export const createUser = asyncHandler(async (req: Request, res: Response) => {
   let email = req.body.email
   const body = req.body
   body.password = hashPassword(body.password)
@@ -40,29 +38,29 @@ export const createUser = async (req: Request, res: Response) => {
       return res.status(500).json({ msg: 'fail to register' })
     }
   })
-}
+})
 
-export const getAllUser = async (req: Request, res: Response) => {
+export const getAllUser = asyncHandler(async (req: Request, res: Response) => {
   try {
     await userData.getUser((err: any, user: IUser[]) => {
       if (err)
-        return res.status(404).json({
+        res.status(404).json({
           err,
           mgs: `could not find  list with user`,
         })
-      return res.status(200).json({
+      res.status(200).json({
         user,
         mgs: `here you go  all  users from database`,
       })
     })
   } catch (e) {
-    return res.status(500).json({
+    res.status(500).json({
       mgs: `faild to read  user from database`,
     })
   }
-}
+})
 
-export const logIn = async (req: any, res: any) => {
+export const logIn = asyncHandler(async (req: any, res: any) => {
   const { email, password } = req.body
 
   await userData.logIn(email, (error: Error, user: IUser) => {
@@ -84,4 +82,4 @@ export const logIn = async (req: any, res: any) => {
       res.sendStatus(404)
     }
   })
-}
+})

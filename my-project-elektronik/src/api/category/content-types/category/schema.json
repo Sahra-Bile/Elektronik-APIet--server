@@ -4,21 +4,12 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "category"
+    "displayName": "category",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {
-    "name": {
-      "type": "string"
-    },
-    "computers": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::computer.computer",
-      "mappedBy": "categories"
-    }
-  }
+  "attributes": {}
 }
