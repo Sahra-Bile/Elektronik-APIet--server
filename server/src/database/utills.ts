@@ -15,14 +15,21 @@ export const comparePassword = (password: string, hash: string) => {
 
 export const getJWTToken = (user: IUser) => {
   const userData = { userId: user.id, email: user.email }
-  const accessToken = jwt.sign(userData, process.env.JWT_SECRET || '')
+  const accessToken = jwt.sign(
+    userData,
+    process.env.JWT_SECRET || 'superSecret',
+  )
   return accessToken
 }
 
 export const verifyJWT = (token: string) => {
-  return jwt.verify(token, process.env.JWT_SECRET || '')
+  return jwt.verify(token, process.env.JWT_SECRET || 'superSecret')
 }
 
 export const decodeJWT = (token: string) => {
-  return jwt_decode<JwtPayload>(token || '') || null || process.env.JWT_SECRET
+  return (
+    jwt_decode<JwtPayload>(token || 'superSecret') ||
+    null ||
+    process.env.JWT_SECRET
+  )
 }

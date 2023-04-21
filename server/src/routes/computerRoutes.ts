@@ -1,19 +1,30 @@
 import express from 'express'
 import * as allData from '../controller/computerController'
 import { authMiddleware } from '../middleware/authMiddleware'
-import UserValidator from '../validator/validator'
+import * as validator from '../validator/computerValidator'
 import { handleValidationError } from '../middleware/handleValidationError'
 export const computerRoutes = express.Router()
 
 computerRoutes.get('/', allData.getAllComputer)
 
-computerRoutes.get('/:id', allData.getComputerById)
+computerRoutes.get(
+  '/:id',
+  validator.checkIdParam(),
+  handleValidationError,
+  allData.getComputerById,
+)
 
-computerRoutes.post('/', authMiddleware, allData.createComputer)
+computerRoutes.post(
+  '/',
+  validator.checkCreateComputer(),
+  handleValidationError,
+  authMiddleware,
+  allData.createComputer,
+)
 
 computerRoutes.delete(
   '/:id',
-  UserValidator.checkIdParam(),
+  validator.checkIdParam(),
   handleValidationError,
   authMiddleware,
   allData.deleteComputer,
@@ -21,7 +32,7 @@ computerRoutes.delete(
 
 computerRoutes.put(
   '/:id',
-  UserValidator.checkIdParam(),
+  validator.checkIdParam(),
   handleValidationError,
   authMiddleware,
   allData.updateComputerById,

@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express'
-import jwt from 'jsonwebtoken'
 
 export const notFound = (req: Request, res: Response, next: NextFunction) => {
   res.status(404)

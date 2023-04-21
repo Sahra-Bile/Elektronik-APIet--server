@@ -1,7 +1,7 @@
 import express from 'express'
 import * as userController from '../controller/userController'
 import { authMiddleware } from '../middleware/authMiddleware'
-import UserValidator from '../validator/validator'
+import UserValidator from '../validator/userValidator'
 import { handleValidationError } from '../middleware/handleValidationError'
 
 export const userRouter = express.Router()
@@ -13,7 +13,7 @@ userRouter.post(
   userController.createUser,
 )
 
-userRouter.get('/', authMiddleware, userController.getAllUser)
+userRouter.get('/', userController.getAllUser)
 
 userRouter.post(
   '/login',

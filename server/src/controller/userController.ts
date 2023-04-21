@@ -60,26 +60,36 @@ export const getAllUser = asyncHandler(async (req: Request, res: Response) => {
   }
 })
 
-export const logIn = asyncHandler(async (req: any, res: any) => {
+export const logIn = asyncHandler(async (req: Request, res: Response) => {
   const { email, password } = req.body
 
-  await userData.logIn(email, (error: Error, user: IUser) => {
-    if (error) {
-      res.status(500).send(error)
-    } else if (user) {
-      const hashedPassword = user.password
-      const correctPassword = utils.comparePassword(password, hashedPassword)
+  await userData.findUserByEmail(email, (error: Error, results: any) => {
+    const count = results[0].count
 
-      if (correctPassword) {
-        const jwtToken = utils.getJWTToken(user)
-        res
-          .status(200)
-          .json({ mgs: `Welcome back ${user.firstName}!`, jwtToken })
+    const emailExists = count === 1
+
+    userData.logIn(email, (error: Error, user: IUser) => {
+      if (error) {
+        res.status(500).send(error)
+      } else if (user) {
+        const hashedPassword = user.password
+        const correctPassword = utils.comparePassword(password, hashedPassword)
+
+        if (correctPassword && emailExists) {
+          const jwtToken = utils.getJWTToken(user)
+          res
+            .status(200)
+            .json({ mgs: `Welcome back ${user.firstName}!`, jwtToken })
+          console.log('tis is correct password', correctPassword)
+          console.log('tis is', jwtToken)
+        } else {
+          res.status(409).json({ message: `wrong password` })
+        }
       } else {
-        res.sendStatus(404)
+        res.status(409).json({
+          message: `either this email does not exist or it has been misspelled ${email}`,
+        })
       }
-    } else {
-      res.sendStatus(404)
-    }
+    })
   })
 })

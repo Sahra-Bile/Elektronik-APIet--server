@@ -1,0 +1,57 @@
+
+GET http://localhost:4444/users
+###
+POST http://localhost:4444/users/register
+Content-Type: application/json
+
+{
+  "firstName": "Sahra",
+  "lastName": "Bile",
+  "email": "sahra34@gmail.com",
+  "password": "sahra123",
+  "confirmPassword": "sahra123"
+ }
+
+###
+POST http://localhost:4444/users/login
+Content-Type:  application/json
+
+{
+ "email": "sahra34@gmail.com",
+  "password": "sahra123"
+ }
+
+
+
+###
+
+GET http://localhost:4444/computers
+
+###
+POST http://localhost:4444/computers 
+Content-Type:  application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoic2FocmEzNEBnbWFpbC5jb20iLCJpYXQiOjE2ODIwODAzMzV9.vFdhWrZN6XtVI8N9ygT5-hCAnkGWs1bYkbBnZs53MoQ
+
+{
+"name": "Huawei ww",
+"description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
+ "maker": "Samsung",
+ "processor": "11th Gen Intel® Core™",
+ "price": 20995,
+ "imageUrl": "https://i.dummyjson.com/data/products/7/3.jpg"
+}
+
+
+###
+DELETE http://localhost:4444/computers/15
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoic2FocmEzNEBnbWFpbC5jb20iLCJpYXQiOjE2ODIwODAzMzV9.vFdhWrZN6XtVI8N9ygT5-hCAnkGWs1bYkbBnZs53MoQ
+
+###
+put http://localhost:4444/computers/17
+Content-Type:  application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoic2FocmEzNEBnbWFpbC5jb20iLCJpYXQiOjE2ODIwODAzMzV9.vFdhWrZN6XtVI8N9ygT5-hCAnkGWs1bYkbBnZs53MoQ
+
+{"name": "heheeh"}
+
+
+

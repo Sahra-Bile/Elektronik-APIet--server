@@ -1,7 +1,7 @@
 import express from 'express'
 import * as allData from '../controller/mobileController'
 import { authMiddleware } from '../middleware/authMiddleware'
-import UserValidator from '../validator/validator'
+// import UserValidator from '../validator/validator'
 import { handleValidationError } from '../middleware/handleValidationError'
 
 export const mobileRoutes = express.Router()

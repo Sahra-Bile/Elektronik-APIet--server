@@ -10,7 +10,9 @@ export function createAudio(): express.Router {
     AudioController.createAudio.bind(AudioController),
   )
   router.get('/', AudioController.getAllAudio.bind(AudioController))
+
   router.get('/:id', AudioController.getAudioById.bind(AudioController))
+
   router.delete(
     '/:id',
     authMiddleware,
